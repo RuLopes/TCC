@@ -1,0 +1,199 @@
+<html><head>
+    <style>
+      #borda{
+        border-width:5px;
+        border-color:#689f38;
+      	border-radius: 10px 20px 50px;
+        border-style: solid;
+
+       }
+    </style>
+  </head><body style="background-color:#ffffff;">{% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/RuLopes/mycdn/master/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/RuLopes/mycdn/master/ripples.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div class="navbar navbar-warning">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="javascript:void(0)">Brand</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-warning-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="javascript:void(0)">Active</a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">Link</a>
+            </li>
+            <li class="dropdown">
+              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+            <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="javascript:void(0)">Action</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Another action</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Dropdown header</li>
+                <li>
+                  <a href="javascript:void(0)">Separated link</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">One more separated link</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input class="form-control col-md-8" placeholder="Search" type="text">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="javascript:void(0)">Link</a>
+            </li>
+            <li class="dropdown">
+              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+            <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="javascript:void(0)">Action</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Another action</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="javascript:void(0)">Separated link</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5" id="borda">
+            <form class="form-horizontal" role="form" method="POST">{% csrf_token %}
+              <h1>Buscar Questões:</h1>
+              <div class="form-group has-success">
+                <div class="col-sm-2">
+                  <label for="inputEmail3" class="control-label">Disciplina:</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputDisciplina" placeholder="Disciplina" name="disciplina">
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                  <p class="help-block">Examplo: Banco de Dados</p>
+                </div>
+              </div>
+              <div class="form-group has-feedback has-success">
+                <div class="col-sm-2">
+                  <label for="inputAssunto" class="control-label">Assunto:</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputAssunto" placeholder="Assunto" name="assunto">
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                  <p class="help-block">Examplo: Modelagem de Dados</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 col-md-1">
+                  <button type="submit" class="btn btn-raised btn-success">Pesquisar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section" style="">{% for pergunta in pergunta %}
+      <div class="col-md-12">
+        <hr style="background-color:#004d40;">
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>{{pergunta.descricao}}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="radio">
+              <label>
+                <input type="radio" name="optradio">{{pergunta.alternativa_a}}</label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optradio">{{pergunta.alternativa_b}}</label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optradio">{{pergunta.alternativa_c}}</label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optradio">{{pergunta.alternativa_d}}</label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optradio">{{pergunta.alternativa_e}}</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <h1 class="text-left">
+                <i class="material-icons ">accessible</i>Video</h1>
+            </div>
+            <!--<div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/i__1Z5a9Sak" allowfullscreen=""></iframe>
+            </div> -->
+            <div class="embed-responsive embed-responsive-16by9">
+              <video class="embed-responsive-item" controls="controls" poster="">
+                <source src="{{pergunta.video_pergunta.url}}" type="video/webm">
+                  <object data="">
+                    <embed src="{{pergunta.video_pergunta.url}}">
+                  </object>
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-sm btn-warning">Responder</a>
+          </div>
+        </div>
+      </div>{%endfor%}</div>
+    
+    <br>
+    <script src="https://cdn.rawgit.com/RuLopes/mycdn/master/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/RuLopes/mycdn/master/material.min.js"></script>
+    <script src="https://cdn.rawgit.com/RuLopes/mycdn/master/ripples.min.js"></script>
+    <script>
+      $.material.init();
+    </script>
+  
+
+</body></html>

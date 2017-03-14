@@ -1,0 +1,17 @@
+<html><head></head><body>{% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    {% for pergunta in pergunta %}
+    <video width="320" height="240" controls="controls" poster="http://tvcultura.com.br/upload/tvcultura/programas/programa-imagem-som.jpg">
+      <source src="{{pergunta.video_pergunta.url}}" type="video/webm">
+        <object data="" width="320" height="240">
+          <embed width="320" height="240" src="{{pergunta.video_pergunta.url}}">
+        </object>
+    </video>
+    {%endfor%}
+
+</body></html>
