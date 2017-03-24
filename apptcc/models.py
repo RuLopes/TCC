@@ -6,13 +6,25 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
-
 from django.db import models
+from django.utils.six import with_metaclass
+
+class UpperCharField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        self.is_uppercase = kwargs.pop('uppercase', False)
+        super(UpperCharField, self).__init__(*args, **kwargs)
+
+    def get_prep_value(self, value):
+        value = super(UpperCharField, self).get_prep_value(value)
+        if self.is_uppercase:
+            return value.upper()
+
+        return value
 
 
 class Assuntos(models.Model):
     id_assunto = models.AutoField(primary_key=True)
-    descricao = models.CharField(max_length=200)
+    descricao = UpperCharField(max_length=200,uppercase=True)
 
     class Meta:
         managed = False
@@ -21,7 +33,7 @@ class Assuntos(models.Model):
 
 class Disciplinas(models.Model):
     id_disciplina = models.AutoField(primary_key=True)
-    descricao = models.CharField(max_length=500)
+    descricao = UpperCharField(max_length=500,uppercase=True)
 
     class Meta:
         managed = False
